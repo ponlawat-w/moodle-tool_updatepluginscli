@@ -26,18 +26,18 @@
 define('CLI_SCRIPT', true);
 
 require(__DIR__ . '/../../../../config.php');
-require_once($CFG->libdir.'/clilib.php');
+require_once($CFG->libdir . '/clilib.php');
 
 // Get the cli options.
-list($options, $unrecognized) = cli_get_params(
+[$options, $unrecognized] = cli_get_params(
     [
         'help' => false,
         'output' => 'text',
-        'fetch' => true
+        'fetch' => true,
     ],
     [
         'h' => 'help',
-        'o' => 'output'
+        'o' => 'output',
     ],
 );
 
@@ -81,10 +81,7 @@ if ($output == 'none') {
     die();
 }
 
-/** @var \core\update\info[] $updatableplugins with key being plugin name */
 $updatableplugins = [];
-
-$plugins;
 foreach (\core\plugin_manager::instance()->get_plugins(true) as $plugins) {
     foreach ($plugins as $plugin) {
         $availableupdates = $plugin->available_updates();

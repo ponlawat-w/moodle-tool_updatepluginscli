@@ -23,6 +23,7 @@
  */
 
 /**
+ * Get update info with the highest version value, or null if no updates available.
  * @param \core\plugininfo\base $plugin
  * @return \core\update\info|null
  */
@@ -43,6 +44,7 @@ function tool_updatepluginscli_getlatestupdate($plugin) {
 }
 
 /**
+ * Get remote update info from an update info, or false if remote plugin is not installable.
  * @param \core\plugin_manager $pluginmanager
  * @param \core\update\info $updateinfo
  * @return \core\update\remote_info|bool
@@ -51,6 +53,6 @@ function tool_updatepluginscli_getremoteupdate($pluginmanager, $updateinfo) {
     if (!$pluginmanager->is_remote_plugin_installable($updateinfo->component, $updateinfo->version)) {
         return false;
     }
-    $remote_info = $pluginmanager->get_remote_plugin_info($updateinfo->component, $updateinfo->version, true);
-    return $remote_info ? $remote_info : false;
+    $remoteinfo = $pluginmanager->get_remote_plugin_info($updateinfo->component, $updateinfo->version, true);
+    return $remoteinfo ? $remoteinfo : false;
 }

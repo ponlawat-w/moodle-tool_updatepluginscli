@@ -30,7 +30,7 @@ require_once($CFG->libdir . '/clilib.php');
 require_once(__DIR__ . '/../lib.php');
 
 // Get the cli options.
-list($options, $unrecognized) = cli_get_params(
+[$options, $unrecognized] = cli_get_params(
     [
         'help' => false,
         'custom' => null,
