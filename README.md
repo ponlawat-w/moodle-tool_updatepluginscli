@@ -1,8 +1,6 @@
 # Update Plugins CLI #
 
-TO-DO Describe the plugin shortly here.
-
-TO-DO Provide more detailed description here.
+CLI scripts to fetch and download plugins from Moodle plugin database.
 
 ## Installing via uploaded ZIP file ##
 
@@ -26,6 +24,81 @@ Alternatively, you can run
     $ php admin/cli/upgrade.php
 
 to complete the installation from the command line.
+
+## Usage ##
+
+There are two scripts (1) fetch updates, (2) download and install updates. After downloading and installing updates, it is still necessary to upgrade the database by going to Site Administration in browser or run CLI script at `admin/cli/upgrade.php`.
+
+### 1. Fetch Updates ###
+
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/fetchupdates.php
+```
+
+Parameters:
+
+- `--help` / `-h` to open help.
+- `output` / `o` (optional, default: `text`) indicates format to return list of outdated plugins, value can be either "text", "json" or "none".
+- `fetch` (default: `true`) set to false to skip fetching and return only the list outdated plugins from the last fetch.
+
+Examples:
+
+Getting update information in JSON format without refetching:
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/fetchupdates.php -o=json --fetch=false
+```
+
+Fetching update information but not return any available updates in console output:
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/fetchupdates.php -o=none
+```
+
+### 2. Download Updates ###
+
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php
+```
+
+Parameters:
+
+- `custom` / `c` (optional) Download available updates to only defined plugin. The value must be in format of `name` or `name:version`. If `:version` not specified, it will update the latest version. For example: `--custom=mod_forum:2025041400` OR `--custom=mod_forum`
+- `strict-all` (optional, default: `false`) Set to `true` to make the script prematurely terminate if some plugins cannot be downloaded.
+
+Examples:
+
+Download and install all fetched updates.
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php
+```
+
+Download and install all fetched updates, but to terminate the script if there is any plugin not able to be installed.
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php --strict-all
+```
+
+Download and install the latest fetched version of a plugin. (Fetches needed beforehand).
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php -c=local_codechecker
+```
+
+Download and install the defined version of a plugin. (Fetches needed beforehand).
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php -c=local_codechecker:2025091600
+```
+
+### 3. Apply Updates ###
+
+Use available script in Moodle core.
+```
+php PATH_TO_MOODLE/admin/cli/upgrade.php
+```
+
+Use flag `--non-interactive` to confirm the upgrade without interactive console.
+```
+php PATH_TO_MOODLE/admin/cli/upgrade.php --non-interactive
+```
+
+Or go to "Site Administration" in browser to apply updates in browser interface.
 
 ## License ##
 

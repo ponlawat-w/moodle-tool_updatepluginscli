@@ -41,8 +41,7 @@ list($options, $unrecognized) = cli_get_params(
     ],
 );
 
-$help =
-<<<HELP
+$help = <<<HELP
 Script to invoke plugin updates checker.
 
 Arguments:
@@ -86,32 +85,28 @@ if ($output == 'none') {
 $updatableplugins = [];
 
 $plugins;
-$plugininfo = \core\plugin_manager::instance()->get_plugins(true);
-foreach ($plugininfo as $type => $plugins) {
+foreach (\core\plugin_manager::instance()->get_plugins(true) as $plugins) {
     foreach ($plugins as $plugin) {
         $availableupdates = $plugin->available_updates();
         if (!$availableupdates) {
             continue;
         }
         foreach ($availableupdates as $update) {
-            $pluginname = $type . '_' . $plugin->name;
-            if (isset($updatableplugins[$pluginname]) && $updatableplugins[$pluginname]->version > $update->version) {
-                continue;
-            }
-            $updatableplugins[$pluginname] = $update;
+            $updatableplugins[] = $update;
         }
     }
 }
 
 if ($output == 'json') {
-    $results = [];
-    foreach ($updatableplugins as $name => $updateinfo) {
-        $results[] = array_merge(['name' => $name], (array)$updateinfo);
-    }
-    cli_writeln(json_encode($results));
+    cli_writeln(json_encode(array_values($updatableplugins)));
 } else if ($output == 'text') {
-    cli_writeln("Plugin\tName\tNew Version\tNew Release\tMaturity");
-    foreach ($updatableplugins as $name => $updateinfo) {
+    if (!count($updatableplugins)) {
+        cli_writeln('There are no plugins to update.');
+        die();
+    }
+    cli_writeln("Component\tName\tNew Version\tNew Release\tMaturity");
+    foreach ($updatableplugins as $updateinfo) {
+        $name = $updateinfo->component;
         $pluginname = get_string('pluginname', $name);
         $version = isset($updateinfo->version) ? $updateinfo->version : '-';
         $release = isset($updateinfo->release) ? $updateinfo->release : '-';
