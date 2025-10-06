@@ -35,12 +35,12 @@ require_once(__DIR__ . '/../lib.php');
         'help' => false,
         'custom' => null,
         'strict-all' => false,
-        'rewrite-config' => null
+        'rewrite-config' => null,
     ],
     [
         'h' => 'help',
         'c' => 'custom',
-    ]
+    ],
 );
 
 $help = <<<HELP
