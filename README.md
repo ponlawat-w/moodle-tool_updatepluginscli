@@ -63,6 +63,7 @@ Parameters:
 
 - `custom` / `c` (optional) Download available updates to only defined plugin. The value must be in format of `name` or `name:version`. If `:version` not specified, it will update the latest version. For example: `--custom=mod_forum:2025041400` OR `--custom=mod_forum`
 - `strict-all` (optional, default: `false`) Set to `true` to make the script prematurely terminate if some plugins cannot be downloaded.
+- `rewrite-config` (optional, default: `false`) Set to "true" to override the value of \$CFG->disableupdateautodeploy in config.php, which interrupts remote installation. (This won't change config.php file content, it overrides only in CLI session.)
 
 Examples:
 
@@ -74,6 +75,11 @@ php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php
 Download and install all fetched updates, but to terminate the script if there is any plugin not able to be installed.
 ```
 php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php --strict-all
+```
+
+For the site that has `$CFG->disableupdateautodeploy` set to `true` in `config.php`, this will fail the remote update. Add flag `--rewrite-config` to override this value for the CLI session.
+```
+php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php --rewrite-config
 ```
 
 Download and install the latest fetched version of a plugin. (Fetches needed beforehand).
