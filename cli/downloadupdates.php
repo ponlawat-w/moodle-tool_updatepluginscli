@@ -35,7 +35,7 @@ require_once(__DIR__ . '/../lib.php');
         'help' => false,
         'custom' => null,
         'strict-all' => false,
-        'rewrite-config' => null,
+        'override-config' => null,
     ],
     [
         'h' => 'help',
@@ -53,7 +53,7 @@ Arguments:
     For example: --custom=mod_forum:2025041400 OR --custom=mod_forum
 - "strict-all" (optional, default: false)
     Set to "true" to make the script prematurely terminate if some plugins cannot be downloaded.
-- "rewrite-config" (optional, default: false)
+- "override-config" (optional, default: false)
     Set to "true" to override the value of \$CFG->disableupdateautodeploy in config.php, which interrupts remote installation.
     (This won't change config.php file content, it overrides only in CLI session.)
 HELP;
@@ -69,7 +69,7 @@ if ($options['help']) {
 }
 
 $disableupdateautodeploy = isset($CFG->disableupdateautodeploy) && $CFG->disableupdateautodeploy;
-$rewriteconfig = !is_null($options['rewrite-config']);
+$rewriteconfig = !is_null($options['override-config']);
 if ($disableupdateautodeploy) {
     if ($rewriteconfig) {
         unset($CFG->disableupdateautodeploy);
@@ -78,7 +78,7 @@ if ($disableupdateautodeploy) {
         cli_writeln('*** WARNING ***');
         cli_writeln(
             '$CFG->disableupdateautodeploy is set to false which will fail the remote installation.'
-            . ' Add flag --rewrite-config to the CLI command to override the configuration value.'
+            . ' Add flag --override-config to the CLI command to override the configuration value.'
         );
         cli_writeln('');
     }
