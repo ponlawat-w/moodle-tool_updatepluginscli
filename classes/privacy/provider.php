@@ -15,15 +15,26 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin strings are defined here.
+ * Privacy provider.
  *
  * @package     tool_updatepluginscli
- * @category    string
  * @copyright   2025 Ponlawat WEERAPANPISIT <ponlawat_w@outlook.co.th>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace tool_updatepluginscli\privacy;
 
-$string['pluginname'] = 'Update Plugins CLI';
-$string['privacy:metadata'] = 'This plugin does not store any privacy data.';
+/**
+ * Privacy provider
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return string
+     */
+    public static function get_reason(): string {
+        return 'privacy:metadata';
+    }
+}
