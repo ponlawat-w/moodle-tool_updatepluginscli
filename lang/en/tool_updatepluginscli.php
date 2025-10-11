@@ -26,3 +26,4 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Update Plugins CLI';
+$string['privacy:metadata'] = 'This plugin does not store any privacy data.';

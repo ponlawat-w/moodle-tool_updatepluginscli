@@ -45,18 +45,18 @@ Examples:
 
 Getting update information in JSON format without refetching:
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/fetchupdates.php -o=json --fetch=false
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/fetchupdates.php -o=json --fetch=false
 ```
 
 Fetching update information but not return any available updates in console output:
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/fetchupdates.php -o=none
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/fetchupdates.php -o=none
 ```
 
 ### 2. Download Updates ###
 
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/downloadupdates.php
 ```
 
 Parameters:
@@ -69,27 +69,27 @@ Examples:
 
 Download and install all fetched updates.
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/downloadupdates.php
 ```
 
 Download and install all fetched updates, but to terminate the script if there is any plugin not able to be installed.
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php --strict-all
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/downloadupdates.php --strict-all
 ```
 
 For the site that has `$CFG->disableupdateautodeploy` set to `true` in `config.php`, this will fail the remote update. Add flag `--override-config` to override this value for the CLI session.
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php --override-config
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/downloadupdates.php --override-config
 ```
 
 Download and install the latest fetched version of a plugin. (Fetches needed beforehand).
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php -c=local_codechecker
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/downloadupdates.php -c=local_codechecker
 ```
 
 Download and install the defined version of a plugin. (Fetches needed beforehand).
 ```
-php PATH_TO_MOODLE/tool/updatepluginscli/cli/downloadupdates.php -c=local_codechecker:2025091600
+php PATH_TO_MOODLE/admin/tool/updatepluginscli/cli/downloadupdates.php -c=local_codechecker:2025091600
 ```
 
 ### 3. Apply Updates ###
