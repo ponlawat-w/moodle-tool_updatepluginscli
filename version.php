@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tool_updatepluginscli';
-$plugin->release = '1.0.2';
-$plugin->version = 2025100700;
+$plugin->release = '1.0.3';
+$plugin->version = 2025101100;
 $plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_STABLE;
