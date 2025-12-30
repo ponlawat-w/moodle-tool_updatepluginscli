@@ -108,7 +108,7 @@ Or go to "Site Administration" in browser to apply updates in browser interface.
 
 ## License ##
 
-2025 Ponlawat WEERAPANPISIT <ponlawat_w@outlook.co.th>
+2025 Adam Jenkins <adam@wisecat.net>
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
