@@ -18,14 +18,14 @@
  * Plugin version and other meta-data are defined here.
  *
  * @package     tool_updatepluginscli
- * @copyright   2025 Ponlawat WEERAPANPISIT <ponlawat_w@outlook.co.th>
+ * @copyright   2025 Adam Jenkins <adam@wisecat.net>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tool_updatepluginscli';
-$plugin->release = '1.0.3';
-$plugin->version = 2025101100;
+$plugin->release = '1.0.4';
+$plugin->version = 2025123000;
 $plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_STABLE;

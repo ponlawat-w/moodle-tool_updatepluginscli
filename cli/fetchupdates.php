@@ -19,7 +19,7 @@
  *
  * @package     tool_updatepluginscli
  * @subpackage  cli
- * @copyright   2025 Ponlawat WEERAPANPISIT <ponlawat_w@outlook.co.th>
+ * @copyright   2025 Adam Jenkins <adam@wisecat.net>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
